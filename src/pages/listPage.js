@@ -4,10 +4,16 @@ import consumeApi from "../utils/consumeApi";
 
 const Files = () => {
   const [paths, setPaths] = useState([]);
-  useEffect(async () => {
-    let { dirs } = await consumeApi("GET", "http://localhost:3001/list");
-    setPaths(dirs);
+  useEffect(() => {
+    if(paths.length==0){
+      consumeApi("GET", "http://localhost:3001/list").then(({dirs})=>{
+        setPaths(dirs);
+        console.log("asddsaads",paths)
+      })
+    }
+    console.log("Sdasdasads")
   }, []);
+
   return <FileExplorer path={paths} />;
 };
 
