@@ -2,7 +2,7 @@ import React, { lazy, useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import "../stylesheets/modal.css"
 function ModalBox(props) {
-  const { file, fileType, show, onClose } = props;
+  const { file, fileType, fileName, show, onClose } = props;
   const decideFileType = (type) => {
     
     if (type == "image") {
@@ -27,7 +27,7 @@ function ModalBox(props) {
   return (
     <>
       <Modal show={show} onHide={() => onClose()}>
-        <Modal.Header closeButton>{file?file.split("/")[file.split("/").length-1]:null}</Modal.Header>
+        <Modal.Header closeButton>{fileName}</Modal.Header>
         <Modal.Body>{decideFileType(fileType.split('/')[0])}</Modal.Body>
         {/* <Modal.Footer>
           <Button onClick={() => onClose()}>Close</Button>

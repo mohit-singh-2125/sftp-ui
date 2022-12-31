@@ -8,6 +8,7 @@ const Files = () => {
   const [file, setFile] = useState();
   const [showModal, setShowModal] = useState(false);
   const [fileType, setFileType] = useState('');
+  const [fileName,setFileName]=useState('')
   useEffect(() => {
     if (paths.length == 0) {
       consumeApi("GET", "http://localhost:3001/list").then(({ dirs }) => {
@@ -16,6 +17,7 @@ const Files = () => {
     }
   }, []);
   const fetchFile = (filePath) => {
+    setFileName(filePath.split("/")[filePath.split("/").length-1])
     consumeApi("POST", "http://localhost:3001/download", {}, { filePath },{},'blob').then(
       (response) => {
         const href = URL.createObjectURL(response)
@@ -38,7 +40,7 @@ const Files = () => {
         }}
         file={file}
       />
-      <ModalBox file={file} fileType={fileType} show={showModal} onClose={()=>{setShowModal(false)}}/>
+      <ModalBox file={file} fileType={fileType} fileName={fileName} show={showModal} onClose={()=>{setShowModal(false)}}/>
     </div>
   );
 };
