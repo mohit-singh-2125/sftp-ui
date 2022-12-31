@@ -9,7 +9,7 @@ import axios from 'axios';
  * @param {object} headers API headers are appended to common headers
  * @param {string} baseURL http://api.example.com
  */
-export default async (method, url, params = {}, body = {}, headers = {}) => {
+export default async (method, url, params = {}, body = {}, headers = {}, responseType) => {
     try {
         const response = await axios({
             method,
@@ -17,6 +17,7 @@ export default async (method, url, params = {}, body = {}, headers = {}) => {
             params: { ...params },
             headers: { ...headers },
             data: body,
+            responseType,
         });
 
         return response.data

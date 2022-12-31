@@ -6,7 +6,7 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 import Router from './Master';
 import reportWebVitals from './reportWebVitals';
 import Files from './pages/listPage';

@@ -1,22 +1,31 @@
-import React, { lazy, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import FileBrowser, { Icons } from "react-keyed-file-browser";
-import Moment from "moment";
 import "../stylesheets/list.css";
-import ff from "../../src";
-const mount = document.querySelectorAll("div.demo-mount-grouped-thumbnails");
 
 function FileExplorer(props) {
-  console.log("Ddasdasdas", props);
-  let { path } = props;
+  const { path, onSelectFile } = props;
   const [paths, setPaths] = useState([]);
   useEffect(() => {
     if (paths.length == 0) {
       setPaths(path);
-      console.log("asddsaads", paths);
     }
   }, [props]);
- 
-  return <FileBrowser files={[...paths]} icons={Icons.FontAwesome(4)} />;
+
+  const readFile = (filePath) => {
+    onSelectFile(filePath.key);
+  };
+
+  return (
+    <>
+      <FileBrowser
+        files={[...paths]}
+        icons={Icons.FontAwesome(4)}
+        onSelectFile={(e) => {
+          readFile(e);
+        }}
+      />
+    </>
+  );
 }
 
 export default FileExplorer;
