@@ -27,7 +27,7 @@ function ModalBox(props) {
   return (
     <>
       <Modal show={show} onHide={() => onClose()}>
-        <Modal.Header closeButton>{file.split("/")[file.split("/").length-1]}</Modal.Header>
+        <Modal.Header closeButton>{file?file.split("/")[file.split("/").length-1]:null}</Modal.Header>
         <Modal.Body>{decideFileType(fileType.split('/')[0])}</Modal.Body>
         {/* <Modal.Footer>
           <Button onClick={() => onClose()}>Close</Button>
