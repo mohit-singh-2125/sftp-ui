@@ -1,6 +1,6 @@
 import React, { lazy, useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-
+import "../stylesheets/modal.css"
 function ModalBox(props) {
   const { file, fileType, show, onClose } = props;
   const decideFileType = (type) => {
