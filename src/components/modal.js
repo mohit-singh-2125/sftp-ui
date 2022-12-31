@@ -4,23 +4,23 @@ import "../stylesheets/modal.css"
 function ModalBox(props) {
   const { file, fileType, fileName, show, onClose } = props;
   const decideFileType = (type) => {
-    
+
     if (type == "image") {
       return (
-        <>
-          <a href={file} download>
+        <center>
+          {/* <a href={file} download> */}
             <img src={file} width="104" height="142" />
-          </a>
-        </>
+          {/* </a> */}
+        </center>
       );
     }
     if (type == "video") {
       return (
-        <>
+        <center>
           <video width="750" height="500" controls>
             <source src={file} type="video/mp4" />
           </video>
-        </>
+        </center>
       );
     }
   };
@@ -29,10 +29,10 @@ function ModalBox(props) {
       <Modal show={show} onHide={() => onClose()}>
         <Modal.Header closeButton>{fileName}</Modal.Header>
         <Modal.Body>{decideFileType(fileType.split('/')[0])}</Modal.Body>
-        {/* <Modal.Footer>
+        <Modal.Footer>
           <Button onClick={() => onClose()}>Close</Button>
-          <Button onClick={() => this.handleModal()}>Save</Button>
-        </Modal.Footer> */}
+          <a href={file} download><Button>Download</Button></a>
+        </Modal.Footer>
       </Modal>
     </>
   );
